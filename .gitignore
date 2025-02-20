@@ -1,4 +1,6 @@
-# Ignore all hidden files and folders. What the things included by the hidden folders are ignored too.
+# Recursively ignore all hidden files and folders.
 .*
+# This file cannot be ignored.
 !.gitignore
-*.bin
+# Recursively ignore the build folder.
+build/

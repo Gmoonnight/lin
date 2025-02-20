@@ -3,7 +3,7 @@ jmp main
 
 	welcome_msg: db "Welcome to setup.", 0x0A, 0x0D, 0x00
 
-	%include "tools/print_string.asm"
+	%include "src/boot/print_string.asm"
 
 main:
 	mov ax, 0x9020

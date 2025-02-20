@@ -5,8 +5,8 @@ int main() {
 	FILE *os = fopen("os", "w");
 
 	// Source files
-	FILE *boot_sector = fopen("boot/boot_sector", "r");	
-	FILE *setup = fopen("boot/setup", "r");
+	FILE *boot_sector = fopen("src/boot/boot_sector", "r");	
+	FILE *setup = fopen("src/boot/setup", "r");
 	
 	// Write boot sector to os
 	char bs_buf[512];

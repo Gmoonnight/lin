@@ -11,5 +11,6 @@ print_char:
 	int 0x10
 	add si, 0x0001
 	jmp print_char
+	
 return:	
 	ret
