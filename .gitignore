@@ -2,5 +2,3 @@
 .*
 # This file cannot be ignored.
 !.gitignore
-# Recursively ignore the build folder.
-build/

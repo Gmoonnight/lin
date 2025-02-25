@@ -6,15 +6,18 @@ CFLAGS_BARE := -std=c17 -ffreestanding -MMD
 CFLAGS_STD := -std=c17 -MMD
 
 SRC_DIR := src
-BUILD_DIR := build
+BUILD_DIR := .build
 
 SRCS := $(shell find $(SRC_DIR) -type f -name "*.asm" -or -name "*.c")
 DEPS := $(SRCS:$(SRC_DIR)/%=$(BUILD_DIR)/%.d)
 OBJS := $(DEPS:.d=.o)
 
+-include $(DEPS)
+
 $(BUILD_DIR)/%.asm.o: $(SRC_DIR)/%.asm
 	mkdir -p $(dir $@)
 	$(AS) $(ASFLAGS) -o $@ $^
+
 $(BUILD_DIR)/tools/%.c.o: $(SRC_DIR)/tools/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS_STD) -c $< -o $@
@@ -22,18 +25,12 @@ $(BUILD_DIR)/%.c.o: $(SRC_DIR)/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS_BARE) -c $< -o $@
 
-# $(BUILD_DIR)/tools/build.c.o: $(SRC_DIR)/tools/build.c
-
-.PHONY: all clean
-
 all: $(OBJS)
-	echo "Success!"
-
--include $(DEPS)
 
 clean:
-	rm -rf build
-	echo "Success!"
+	rm -rf $(BUILD_DIR)
+
+.PHONY: all clean
 
 
 
